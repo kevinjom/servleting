@@ -13,11 +13,9 @@ public class InboxServlet extends HttpServlet {
     public static final String CONTENT_TYPE = "Content-Type";
     public static final String APPLICATOIN_JSON = "applicatoin/json";
 
-    private final ObjectMapper objectMapper;
     private final InboxRepository inboxRepository;
 
     public InboxServlet() {
-        objectMapper = new ObjectMapper();
         inboxRepository = new InboxRepository();
     }
 
@@ -28,7 +26,8 @@ public class InboxServlet extends HttpServlet {
 
         String userId = (String) req.getAttribute("userId");
 
-        resp.getWriter().append(objectMapper.writeValueAsString(inboxRepository.getAll(userId)));
+        resp.getWriter().append(ObjectMapperFactory.get()
+                .writeValueAsString(inboxRepository.getAll(userId)));
     }
 }
 

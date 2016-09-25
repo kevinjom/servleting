@@ -1,15 +1,37 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.5'
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'com.bmuschko.tomcat'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-  jcenter()
+    jcenter()
 }
 
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.21'
-    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.0'
+    providedCompile 'javax.servlet:servlet-api:2.5'
     testCompile 'junit:junit:4.12'
+
+    def tomcatVersion = '7.0.59'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+}
+
+tomcat {
+    httpPort = 8088
+    contextPath = '/'
 }

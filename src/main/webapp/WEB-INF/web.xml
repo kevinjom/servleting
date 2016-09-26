@@ -4,6 +4,10 @@
 	      http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
 
+    <listener>
+        <listener-class>com.github.kevinjom.servleting.spring.ApplicationContextLoadListener</listener-class>
+    </listener>
+
     <filter>
         <filter-name>userFilter</filter-name>
         <filter-class>com.github.kevinjom.servleting.UserFilter</filter-class>

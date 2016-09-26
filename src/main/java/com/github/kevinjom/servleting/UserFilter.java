@@ -33,7 +33,8 @@ public class UserFilter implements Filter {
             return Optional.empty();
         }
 
-        Optional<Cookie> userCookie = Arrays.asList(cookies).stream().filter(cookie -> "userId".equals(cookie.getName())).findFirst();
+        Optional<Cookie> userCookie = Arrays.asList(cookies).stream()
+                .filter(cookie -> "userId".equals(cookie.getName())).findFirst();
         if (userCookie.isPresent() && userCookie.get().getValue().startsWith("k")) {
             return Optional.of("kevin");
         }

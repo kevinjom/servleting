@@ -41,7 +41,7 @@ public interface Servlet {
 
     public ServletConfig getServletConfig();
 
-    public void service(ServletRequest req, ServletResponse res)
+    public void **service**(ServletRequest req, ServletResponse res)
 	throws ServletException, IOException;
 
     public String getServletInfo();

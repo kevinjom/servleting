@@ -30,7 +30,7 @@ public class ApplicationContextLoadListener implements ServletContextListener {
             System.out.println(filter.getClass());
             System.out.println(filter.getClass().getAnnotations().length);
             FilterBean filterBean = filter.getClass().getAnnotationsByType(FilterBean.class)[0];
-            registration.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST),false,filterBean.urlPatterns() );
+            registration.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), false, filterBean.urlPatterns());
             Arrays.asList(filterBean.initParams()).forEach(param -> registration.setInitParameter(param.name(), param.value()));
         });
     }
@@ -41,12 +41,9 @@ public class ApplicationContextLoadListener implements ServletContextListener {
             System.out.println(servlet.getClass());
             System.out.println(Arrays.toString(servlet.getClass().getAnnotations()));
             ServletRegistration.Dynamic registration = servletContext.addServlet(name, servlet);
-            ServletBean[] servletBeen = servlet.getClass().getAnnotationsByType(ServletBean.class);
-            if (servletBeen == null) {
-
-            }
-//            registration.addMapping(servletBeen.urlPatterns());
-//            Arrays.asList(servletBeen.initParams()).forEach(param -> registration.setInitParameter(param.name(), param.value()));
+            ServletBean servletBeen = servlet.getClass().getAnnotationsByType(ServletBean.class)[0];
+            registration.addMapping(servletBeen.urlPatterns());
+            Arrays.asList(servletBeen.initParams()).forEach(param -> registration.setInitParameter(param.name(), param.value()));
         });
     }
 

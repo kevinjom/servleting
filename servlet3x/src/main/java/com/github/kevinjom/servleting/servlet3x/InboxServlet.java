@@ -2,6 +2,7 @@ package com.github.kevinjom.servleting.servlet3x;
 
 import com.github.kevinjom.servleting.servlet3x.spring.ServletBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

@@ -1,6 +1,7 @@
 package com.github.kevinjom.servleting.servlet3x;
 
 import com.github.kevinjom.servleting.servlet3x.spring.FilterBean;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebInitParam;

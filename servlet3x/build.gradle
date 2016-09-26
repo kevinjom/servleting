@@ -1,0 +1,27 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.5'
+    }
+}
+
+apply plugin: 'com.bmuschko.tomcat'
+apply plugin: 'war'
+
+dependencies {
+    compile 'org.springframework:spring-context:4.3.3.RELEASE'
+    providedCompile 'javax.servlet:javax.servlet-api:3.0.1'
+
+    def tomcatVersion = '7.0.59'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+}
+
+tomcat {
+    httpPort = 8088
+    contextPath = '/'
+}

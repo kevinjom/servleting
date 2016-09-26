@@ -6,25 +6,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 public class UserFilter implements Filter {
+    private List<String> excludedResoruces = new LinkedList<>();
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        System.out.println("filter init...");
+        String excludes = filterConfig.getInitParameter("excludes");
+        if (excludes != null && excludes.length() > 0) {
+            excludedResoruces = Arrays.asList(excludes.split(",\b*"));
+        }
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
-        Optional<String> userId = decodeUserId(req.getCookies());
-        if (!userId.isPresent()) {
-            resp.setStatus(401);
-            resp.getWriter().write("invliad user");
-            return;
+
+        boolean excluded =   excludedResoruces.stream().anyMatch(req.getServletPath()::endsWith);
+        if (!excluded) {
+            Optional<String> userId = decodeUserId(req.getCookies()); if (!userId.isPresent()) {
+                resp.setStatus(401);
+                resp.getWriter().write("invliad user");
+                return;
+            }
+            req.setAttribute("userId", userId.get());
+
         }
-        req.setAttribute("userId", userId.get());
+
         chain.doFilter(req, resp);
     }
 

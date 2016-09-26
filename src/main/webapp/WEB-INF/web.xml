@@ -11,6 +11,10 @@
     <filter>
         <filter-name>userFilter</filter-name>
         <filter-class>com.github.kevinjom.servleting.UserFilter</filter-class>
+        <init-param>
+            <param-name>excludes</param-name>
+            <param-value>.css,.html,.js</param-value>
+        </init-param>
     </filter>
 
     <filter-mapping>

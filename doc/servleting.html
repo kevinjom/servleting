@@ -405,24 +405,37 @@ em {
 </section>
   </div>
   <div class="slide hidden" id="slide-2">
-    <section class="slide-content"><h3 id="what-is-a-servlet">What is a Servlet</h3>
-<blockquote>
-<p>A servlet is a Java technology-based Web component, managed by a container,
-that generates dynamic content.</p>
-</blockquote>
+    <section class="slide-content"><h3 id="what-we-are-doing">What we are doing</h3>
+<h1 id="web">WEB</h1>
 </section>
   </div>
   <div class="slide hidden" id="slide-3">
-    <section class="slide-content"><h3 id="servlet-container">Servlet Container</h3>
-<h4 id="servlet-containers-execute-and-manage-servlets-">Servlet containers execute and manage servlets.</h4>
-<p>Famous containers:</p>
-<ul>
-<li>Tomcat</li>
-<li>Jetty</li>
-</ul>
+    <section class="slide-content"><h3 id="web-server-container">Web server &amp; container</h3>
+<p><img src="server.jpg" alt="server"></p>
 </section>
   </div>
   <div class="slide hidden" id="slide-4">
+    <section class="slide-content"><h3 id="what-is-a-servlet">What is a Servlet</h3>
+<h4 id="a-servlet-is-a-java-technology-based-web-component-managed-by-a-container-that-generates-dynamic-content-">A servlet is a Java technology-based Web component, managed by a container, that generates dynamic content.</h4>
+<h4 id="servlets-interact-with-web-clients-via-a-request-response-paradigm-implemented-by-the-servlet-container-">Servlets interact with Web clients via a request/response paradigm implemented by the servlet container.</h4>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-5">
+    <section class="slide-content"><h3 id="servlet-container">Servlet Container</h3>
+<h4 id="servlet-containers-execute-and-manage-servlets-">Servlet containers execute and manage servlets.</h4>
+<blockquote>
+<p>The servlet container is a part of a Web server or application server that
+ provides the network services over which requests and responses are sent,
+ decodes MIME-based requests, and formats MIME-based responses. A servlet
+ container also contains and manages servlets through their lifecycle.</p>
+<p>A servlet container can be built into a host Web server, or installed as an
+ add-on component to a Web Server via that server’s native extension API. Servlet
+ containers can also be built into or possibly installed into Web-enabled
+ application server</p>
+</blockquote>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-6">
     <section class="slide-content"><h3 id="servlet-interface">Servlet Interface</h3>
 <pre><code class="lang-java">
 <span class="hljs-keyword">package</span> javax.servlet;
@@ -441,29 +454,54 @@ that generates dynamic content.</p>
 }</code></pre>
 </section>
   </div>
-  <div class="slide hidden" id="slide-5">
-    <section class="slide-content"><h3 id="httpservlet">HttpServlet</h3>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-6">
-    <section class="slide-content"><h3 id="simple-servlet-demo">Simple Servlet Demo</h3>
-<p>(demo)</p>
-</section>
-  </div>
   <div class="slide hidden" id="slide-7">
-    <section class="slide-content"><h3 id="request">Request</h3>
+    <section class="slide-content"><h3 id="httpservlet">HttpServlet</h3>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">service</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span>
+
+<span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span>
+<span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doPost</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span>
+<span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doDelete</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span>
+...</span></code></pre>
 </section>
   </div>
   <div class="slide hidden" id="slide-8">
-    <section class="slide-content"><h3 id="response">Response</h3>
+    <section class="slide-content"><h3 id="simple-servlet-demo">Simple Servlet Demo</h3>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InboxServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>{
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>{
+        resp.getWriter().write(<span class="hljs-string">"hello sevleting"</span>);
+    }
+}</code></pre>
 </section>
   </div>
   <div class="slide hidden" id="slide-9">
-    <section class="slide-content"><h3 id="request-and-response-demo">Request and Response Demo</h3>
-<p>(demo)</p>
+    <section class="slide-content"><h3 id="how-a-java-web-app-looks-like">How a java web app looks like</h3>
+<p><img src="dir.jpg" alt="directory-structure"></p>
 </section>
   </div>
   <div class="slide hidden" id="slide-10">
+    <section class="slide-content"><h3 id="servletrequest">ServletRequest</h3>
+<p>The request object encapsulates all information from the client request.</p>
+<p>You can get these information from request object</p>
+<ul>
+<li>Request URL</li>
+<li>Parameters</li>
+<li>Headers</li>
+<li>Cookies</li>
+<li>Attributes</li>
+<li>Reqeust Body via InputStream</li>
+<li>...</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-11">
+    <section class="slide-content"><h3 id="servletresponse">ServletResponse</h3>
+<p>The response object encapsulates all information to be returned from the server
+to the client.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-12">
     <section class="slide-content"><h3 id="servlet-lifecycle">Servlet Lifecycle</h3>
 <ul>
 <li><strong>Loading and Instantiation</strong> - locate the class and construct a instance of that
@@ -475,16 +513,16 @@ class</li>
 </ul>
 </section>
   </div>
-  <div class="slide hidden" id="slide-11">
+  <div class="slide hidden" id="slide-13">
     <section class="slide-content"><h2 id="filter">Filter</h2>
 </section>
   </div>
-  <div class="slide hidden" id="slide-12">
+  <div class="slide hidden" id="slide-14">
     <section class="slide-content"><h2 id="filter-demo-">Filter (demo)</h2>
 <p>(demo)</p>
 </section>
   </div>
-  <div class="slide hidden" id="slide-13">
+  <div class="slide hidden" id="slide-15">
     <section class="slide-content"><h3 id="servletcontext">ServletContext</h3>
 <blockquote>
 <p>The ServletContext interface defines a servlet’s view of the Web application
@@ -493,11 +531,7 @@ within which the servlet is running.</p>
 <p>each web applicaton only has <strong>ONE</strong> <code>ServletContext</code></p>
 </section>
   </div>
-  <div class="slide hidden" id="slide-14">
-    <section class="slide-content"><h2 id="requestdispatcher">RequestDispatcher</h2>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-15">
+  <div class="slide hidden" id="slide-16">
     <section class="slide-content"><h3 id="event-listeners">Event Listeners</h3>
 <ul>
 <li><strong>ServletContextListener</strong></li>
@@ -507,12 +541,53 @@ within which the servlet is running.</p>
 </ul>
 </section>
   </div>
-  <div class="slide hidden" id="slide-16">
+  <div class="slide hidden" id="slide-17">
     <section class="slide-content"><h3 id="servletcontext-and-listener-demo">ServletContext and Listener Demo</h3>
 <p>(demo)</p>
 </section>
   </div>
-  <div class="slide hidden author-slide" id="slide-17">
+  <div class="slide hidden" id="slide-18">
+    <section class="slide-content"><h1 id="servlet-3-0">Servlet 3.0</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-19">
+    <section class="slide-content"><h3 id="whats-new">Whats new</h3>
+<ul>
+<li><strong>Ease of Development with annotations</strong></li>
+<li><strong>Dynamic Registration of Servlets and Filters</strong></li>
+<li>Asynchronous support</li>
+<li>Pluggability</li>
+<li>Resources in bundled jar files</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-20">
+    <section class="slide-content"><h3 id="drop-web-xml-use-annotations">Drop web.xml, use Annotations</h3>
+<ul>
+<li><code>@WebServlet</code> – Define a Servlet</li>
+<li><code>@WebFilter</code> – Define a Filter</li>
+<li><code>@WebListener</code> – Define a Listener</li>
+<li><code>@WebInitParam</code> – Define init params</li>
+<li>...</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-21">
+    <section class="slide-content"><h3 id="dynamic-servlet-filter-registration">Dynamic Servlet/Filter Registration</h3>
+<h4 id="new-methods-had-been-added-to-servletcontext-to-make-it-possible-to-register-servlet-filter-listener-with-java-code-">new methods had been added to <code>ServletContext</code> to make it possible to register servlet/filter/listener with java code.</h4>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> ServletRegistration.<span class="hljs-function">Dynamic <span class="hljs-title">addServlet</span><span class="hljs-params">(...)</span>
+
+<span class="hljs-keyword">public</span> FilterRegistration.Dynamic <span class="hljs-title">addFilter</span><span class="hljs-params">(...)</span>
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addListener</span><span class="hljs-params">()</span></span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-22">
+    <section class="slide-content"><h3 id="demo-codebase">Demo codebase</h3>
+<p>check it out on github <a href="https://github.com/kevinjom/servleting">https://github.com/kevinjom/servleting</a></p>
+</section>
+  </div>
+  <div class="slide hidden author-slide" id="slide-23">
     <section class="slide-content"><div class="author">
   <h1 class="name">kevinjom</h1>
     <h3 class="twitter">

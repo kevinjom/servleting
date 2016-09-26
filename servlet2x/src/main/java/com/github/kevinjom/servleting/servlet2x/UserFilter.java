@@ -1,8 +1,6 @@
-package com.github.kevinjom.servleting;
+package com.github.kevinjom.servleting.servlet2x;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +10,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-@WebFilter(urlPatterns = "/*", initParams = {@WebInitParam(name = "excludes", value = ".html,.css,.js")} )
 public class UserFilter implements Filter {
     private List<String> excludedResoruces = new LinkedList<>();
     @Override

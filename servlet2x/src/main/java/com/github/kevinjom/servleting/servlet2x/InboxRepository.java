@@ -1,4 +1,4 @@
-package com.github.kevinjom.servleting;
+package com.github.kevinjom.servleting.servlet2x;
 
 import org.springframework.stereotype.Repository;
 

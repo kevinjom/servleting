@@ -1,4 +1,4 @@
-package com.github.kevinjom.servleting.spring;
+package com.github.kevinjom.servleting.servlet2x.spring;
 
 import org.springframework.context.ApplicationContext;
 

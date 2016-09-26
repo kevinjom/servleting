@@ -1,4 +1,4 @@
-package com.github.kevinjom.servleting;
+package com.github.kevinjom.servleting.servlet2x;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

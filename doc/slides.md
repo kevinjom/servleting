@@ -28,7 +28,17 @@ controls: false
 
 #### A servlet is a Java technology-based Web component, managed by a container, that generates dynamic content.
 
-#### Servlets interact with Web clients via a request/response paradigm implemented by the servlet container.
+(CONFUSED)
+
+--
+
+### What is a Servlet
+
+- Servlet is a technology that is used to create web application 
+- Web component that is deployed on server side to create dynamic web pages
+- Servlet is an API that provides many Interfaces and classes including documentation
+- Servlet is an Interface that must be implemented for creating any servlet
+- Servlet is a class that extend the functionalities of server  and responds to the incoming requests
 
 
 --
@@ -107,7 +117,9 @@ public class InboxServlet extends HttpServlet {
 
 ### ServletRequest
 
-The request object encapsulates all information from the client request.
+The request object encapsulates all information from the client request.A new
+request object will be created each time a client request received and this
+object is only available in servlet.
 
 You can get these information from request object
 - Request URL
@@ -125,6 +137,13 @@ You can get these information from request object
 The response object encapsulates all information to be returned from the server
 to the client.
 
+```java
+    public void setStatus(int sc);
+    public void addHeader(String name, String value);
+    public PrintWriter getWriter() throws IOException;
+    ...
+```
+
 --
 
 ### Servlet Lifecycle
@@ -138,12 +157,34 @@ to the client.
 
 --
 
-## Filter
+### Filter, what is it
 
---
+A filter is a reusable piece of code that can transform the content of HTTP requests, responses, and header information. Filters do not generally create a response or respond to a request as servlets do, rather they modify or adapt the requests for a resource, and modify or adapt responses from a resource.
 
-## Filter (demo)
-(demo)
+### Filter interface
+
+```java
+public interface Filter {
+ public void init(FilterConfig filterConfig) throws ServletException;
+ public void doFilter(ServletRequest request, ServletResponse response,
+            FilterChain chain) throws IOException, ServletException;
+ public void destroy();
+}
+```
+
+### Filter, what can it do
+
+- Authentication filters
+- Logging and auditing filters
+- Image conversion filters
+- Data compression filters
+- Encryption filters
+- Tokenizing filters
+- Filters that trigger resource access events
+- XSL/T filters that transform XML content
+- MIME-type chain filters
+- Caching filters
+
 
 --
 
@@ -161,11 +202,6 @@ each web applicaton only has **ONE** `ServletContext`
 - ServletContextAttributeListener
 - ServletRequestListener
 - ServletRequestListener
-
---
-
-### ServletContext and Listener Demo
-(demo)
 
 --
 
